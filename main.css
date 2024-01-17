@@ -15,10 +15,12 @@ body {
   color: #fcbf49;
   height: 10vh;
   line-height: 10vh;
+  box-sizing: border-box;
 }
 
 .container {
   height: 65vh;
+  box-sizing: border-box;
 }
 
 .footer {
@@ -31,6 +33,7 @@ body {
   padding-bottom: 12px;
   width: 1oovw;
   justify-content: center;
+  box-sizing: border-box;
 }
 
 .contentContainer {
