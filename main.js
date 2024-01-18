@@ -1,21 +1,21 @@
-const fetchFromData = (filter) => {
+// ===== INITIAL LOAD OF DATA WITH ALL FILTER ON PAGE LOAD ===== //
+document.addEventListener('DOMContentLoaded', fetchFromData('all'));
+
+// ===== FUNCTION TO FETCH DATA FROM JSON FILE ===== //
+function fetchFromData(filter) {
   fetch('./data.json')
     .then(response => response.json())
     .then(data => {
-        // ===== FILTER DATA ===== //
+
+        // ===== FILTER DATA IF NECESSARY ===== //
         if(filter !== 'all') {
-          data = data.filter(d => {
-            console.log(d['island'].toLowerCase());
-            console.log(filter);
-            console.log(d['island'].toLowerCase() === filter);
-            return d['island'].toLowerCase() === filter;
-          })
-          
+          data = data.filter(d => d['island'].toLowerCase() === filter)
         }
+
         // ===== SELECT A RANDOM OBJECT FROM DATA ===== //
         const randomIndex = Math.floor(Math.random() * Object.keys(data).length);
         
-        const content = data[randomIndex.toLocaleString()];
+        const content = data[randomIndex];
 
         // ===== DISPLAY CONTENT ON THE PAGE ===== //
         const displayContainer = document.getElementById('container');
@@ -42,7 +42,7 @@ const fetchFromData = (filter) => {
     .catch(error => console.error('Error fetching data:', error));
 }
 
-const updateFilter = (filter) => {
+function updateFilter(filter) {
   // ===== GET CURRENTLY ACTIVE FILTER ===== //
   const activeFilter = document.getElementsByClassName('activeFilter');
 
@@ -58,8 +58,7 @@ const updateFilter = (filter) => {
   fetchFromData(filter);
 }
 
-// ===== INITIAL LOAD OF DATA WITH ALL FILTER ===== //
-document.addEventListener('DOMContentLoaded', fetchFromData('all'));
+
 
 // ===== ADD EVENT LISTENERS TO ALL FILTER BUTTONS ===== //
 const buttons = document.getElementsByTagName('button');
