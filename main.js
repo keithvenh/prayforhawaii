@@ -4,7 +4,13 @@ const fetchFromData = (filter) => {
     .then(data => {
         // ===== FILTER DATA ===== //
         if(filter !== 'all') {
-          data = data.filter(d => d['island'].toLowerCase() === filter)
+          data = data.filter(d => {
+            console.log(d['island'].toLowerCase());
+            console.log(filter);
+            console.log(d['island'].toLowerCase() === filter);
+            return d['island'].toLowerCase() === filter;
+          })
+          
         }
         // ===== SELECT A RANDOM OBJECT FROM DATA ===== //
         const randomIndex = Math.floor(Math.random() * Object.keys(data).length);
