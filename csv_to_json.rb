@@ -3,7 +3,7 @@ require 'json'
 
 csv = CSV.parse(File.read('Hawaii_Lanai_Molokai.csv', encoding: 'bom|utf-8'), headers: true )
 
-json = {}
+json = []
 index = 0
 
 csv.each do |row|

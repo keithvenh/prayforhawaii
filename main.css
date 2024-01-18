@@ -1,5 +1,6 @@
 body {
   background-color: #003049;
+  background-image: url('./purple-pink-phone.jpg');
   color: #fafafa;
   height: 100vh;
   width: 100vw;
@@ -7,19 +8,29 @@ body {
   display: flex;
   font-family: 'Lato', 'Arial', 'sans-serif';
   flex-direction: column;
+  background-position: top right;
 }
 
 .header h1 {
   text-align: center;
   font-size: 1.5em;
-  color: #fcbf49;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
   height: 10vh;
   line-height: 10vh;
   box-sizing: border-box;
+
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-image: url('./yellow-orange.jpg');
+  background-size: cover;
+  background-position: top right;
 }
 
-.container {
-  height: 65vh;
+section {
+  flex: 1;
   box-sizing: border-box;
 }
 
@@ -48,13 +59,45 @@ body {
   text-transform: uppercase;
   color: #fafafa;
   background-color: #003049;
+  background-image: url('./purple-pink-phone.jpg');
+  background-position: top right;
   padding: 0 6px;
-  top: -0.4em;
+  top: -0.5em;
   margin-left: 12px;
   letter-spacing: 2px;
 }
 
 .contentContainer .content {
   font-size: 1.1em;
-  padding: 0.8em 12px;
+  padding: 1em 12px;
+}
+
+button {
+  background: none;
+  border: 2px solid #fafafa;
+  padding: 6px 12px;
+  outline: none;
+  margin: 0 8px;
+  color: #fafafa;
+  text-transform: uppercase;
+  font-size: 0.8em;
+}
+
+.activeFilter {
+  background: #fafafa;
+  color: #003049;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.filterLabel {
+  text-align: center;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.9em;
 }

@@ -1,18 +1,17 @@
-document.addEventListener('DOMContentLoaded', function() {
-  
+const fetchFromData = (filter) => {
   fetch('./data.json')
     .then(response => response.json())
     .then(data => {
-        // Select a random object
+        // ===== FILTER DATA ===== //
+        if(filter !== 'all') {
+          data = data.filter(d => d['island'].toLowerCase() === filter)
+        }
+        // ===== SELECT A RANDOM OBJECT FROM DATA ===== //
         const randomIndex = Math.floor(Math.random() * Object.keys(data).length);
-
-        console.log(randomIndex);
         
         const content = data[randomIndex.toLocaleString()];
 
-        console.log(content);
-
-        // Display content on the page
+        // ===== DISPLAY CONTENT ON THE PAGE ===== //
         const displayContainer = document.getElementById('container');
         const contentHTML = `
           <div class='contentContainer pastor'>
@@ -35,5 +34,33 @@ document.addEventListener('DOMContentLoaded', function() {
         displayContainer.innerHTML = contentHTML;
     })
     .catch(error => console.error('Error fetching data:', error));
-});
+}
 
+const updateFilter = (filter) => {
+  // ===== GET CURRENTLY ACTIVE FILTER ===== //
+  const activeFilter = document.getElementsByClassName('activeFilter');
+
+  for(let i = 0; i < activeFilter.length; i++) {
+    // ===== REMOVE ACTIVE FILTER CLASS FROM ALL CURRENT FILTERS ===== //
+    activeFilter[i].classList.remove('activeFilter');
+  }
+
+  // ===== ADD ACTIVE FILTER TO CLICKED FILTER ===== //
+  document.getElementById(filter).classList.add('activeFilter');
+
+  // ===== UPDATE DATA FILTER AND GET NEW DATA ===== //
+  fetchFromData(filter);
+}
+
+// ===== INITIAL LOAD OF DATA WITH ALL FILTER ===== //
+document.addEventListener('DOMContentLoaded', fetchFromData('all'));
+
+// ===== ADD EVENT LISTENERS TO ALL FILTER BUTTONS ===== //
+const buttons = document.getElementsByTagName('button');
+
+for(let i = 0; i < buttons.length; i++) {
+  buttons[i].addEventListener('click', event => {
+    // ===== UPDATE THE FILTER ON BUTTON CLICK EVENT ===== //
+    updateFilter(event.target.id);
+  })
+}
