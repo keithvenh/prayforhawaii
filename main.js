@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', fetchFromData('all'));
 
 // ===== FUNCTION TO FETCH DATA FROM JSON FILE ===== //
 function fetchFromData(filter) {
-  fetch('./data.json')
+  fetch('./data_v2.json')
     .then(response => response.json())
     .then(data => {
 
