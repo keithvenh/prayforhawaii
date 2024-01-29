@@ -1,7 +1,7 @@
 require 'csv'
 require 'json'
 
-csv = CSV.parse(File.read('Hawaii_Lanai_Molokai.csv', encoding: 'bom|utf-8'), headers: true )
+csv = CSV.parse(File.read('HaLaMoKaMaOa.csv', encoding: 'bom|utf-8'), headers: true )
 
 json = []
 index = 0
